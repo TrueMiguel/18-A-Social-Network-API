@@ -26,6 +26,27 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+
+    // add a friend
+    async addFriend (req, res) {
+        try {
+            const friend = await new User.findOneAndUpdate(
+                { _id: req.body.userId},
+                { $addToSet: { friends: friend}},
+                { new: true }
+            );
+            
+            if (!friend) {
+                return res
+                .status(404)
+                .json({ message: 'Friend not found'})
+            }
+
+            res.json('Friend added!')
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
     // create new user
     async createNewUser (req, res) {
         try {
