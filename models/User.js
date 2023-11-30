@@ -7,10 +7,10 @@ const userSchema = Schema(
         // using regular expresison to check if the email string matches the standard email format. 
         email: {type: String, required: true, unique: true, match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/},   //need to have it match a valid email form
         thoughts: [{type: Schema.Types.ObjectId, ref: 'thought'}],
-        friends: [{type: Schema.Types.ObjectId, ref: 'friend'}]
+        friends: [{type: Schema.Types.ObjectId, ref: 'user'}]
     },
     {
-        toJson: {virtuals: true,},
+        toJSON: {virtuals: true},
         id:false,
     }
 );

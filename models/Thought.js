@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const { DateTime } = require('luxon');
-const { ObjectId } = require('bson');
 
 const reactionSchema = new Schema(
     {
