@@ -26,6 +26,7 @@ module.exports = {
         }
     },
 
+    // update user
     async updateUser (req, res) {
         try {
             const user = await User.findOneAndUpdate(
