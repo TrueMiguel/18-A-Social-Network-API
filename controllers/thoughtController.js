@@ -29,7 +29,7 @@ module.exports = {
     // create a new thought
     async createThought (req, res) {
         try{
-            const newThought = (await Thought.create(req.body)).select('-__v');
+            const newThought = await Thought.create(req.body);
             const user = await User.findOneAndUpdate(
                 { username: req.body.username },
                 { $addToSet: { thoughts: newThought._id } },
@@ -71,7 +71,7 @@ module.exports = {
     // delete thought
     async deleteThought (req, res) {
         try {
-            const thoughtDelete = await User.findOneAndDelete({_id: req.params.thoughtId})
+            const thoughtDelete = await Thought.findOneAndDelete({_id: req.params.thoughtId})
             res.status(200).json('Thought deleted')
         } catch (err) {
             res.status(500).json(err);
